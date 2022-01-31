@@ -21,9 +21,29 @@ deck = [2, 3, 4, 5, 6 ,7, 8, 9, 10, "J", "Q", "K", "A" ] * 4
 
 #give starting cards to player and dealer
 #need a list to hold the cards
-hand = []
-for i in range(2):
-    random.shuffle(deck)
-    hand.append(deck.pop()) 
-print(hand)
 
+def deal():
+    hand = []
+    for i in range(2):
+        random.shuffle(deck)
+        hand.append(deck.pop())
+    return hand
+
+
+def total(hand):
+    total = 0
+    for card in hand:
+        if card == "J":
+            card = 10
+        elif card == "Q":
+            card = 10
+        elif card == "K":
+            card = 10
+        elif card == "A":
+            if total >= 11:
+                card == 1
+            card == 11
+        total += card
+    return total
+
+print(total(deal()))
