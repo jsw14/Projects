@@ -41,9 +41,18 @@ def total(hand):
             card = 10
         elif card == "A":
             if total >= 11:
-                card == 1
-            card == 11
+                card = 1
+            card = 11
         total += card
     return total
 
-print(total(deal()))
+
+def play_game():
+    player_hand = deal()
+    dealer_hand = deal()
+    print(player_hand)
+    print(total(player_hand))
+    
+
+
+play_game()
