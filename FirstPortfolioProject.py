@@ -23,9 +23,7 @@ deck = [2, 3, 4, 5, 6 ,7, 8, 9, 10, "J", "Q", "K", "A" ] * 4
 #need a list to hold the cards
 hand = []
 for i in range(2):
-    # index = random.randint(0, len(deck) - 1)
-    # print(index)
-    hand += deck.pop(random.randrange(len(deck)))
-#adding index as the element to pop gives the type error int object not iterable
+    random.shuffle(deck)
+    hand.append(deck.pop()) 
 print(hand)
 
