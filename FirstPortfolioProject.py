@@ -47,12 +47,32 @@ def total(hand):
     return total
 
 
+def hit(hand):
+    hand.append(deck.pop())
+    return hand
+
+
 def play_game():
     player_hand = deal()
     dealer_hand = deal()
-    print(player_hand)
-    print(total(player_hand))
-    
+    print(f"Dealer's hand: {dealer_hand[0]}")
+    print(f"Your hand: {player_hand} for a total of {total(player_hand)}")
+    command = ""
+    while command != "quit":
+        command = input("Would you like to hit, stay, or quit the game? \n> ").lower()
+        if command == "hit":
+            hit(player_hand)
+            print(f"Your hand: {player_hand} for a total of {total(player_hand)}")
+        elif command == "stay":
+            print(f"Dealer's hand: {dealer_hand}")
+            while total(dealer_hand) < 17:
+                hit(dealer_hand)
+                print(f"Dealer's hand: {dealer_hand}")
+        elif command == "quit" or "quit game" or "quit the game":
+            print("Goodbye")
+            break
+        else:
+            print("Error: please choose either hit, stay, or quit.")
 
 
 play_game()
