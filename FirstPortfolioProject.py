@@ -64,10 +64,11 @@ def play_game():
             hit(player_hand)
             print(f"Your hand: {player_hand} for a total of {total(player_hand)}")
         elif command == "stay":
-            print(f"Dealer's hand: {dealer_hand}")
+            #add totals to dealer hand
+            print(f"Dealer's hand: {dealer_hand} for a total of {total(dealer_hand)}")
             while total(dealer_hand) < 17:
                 hit(dealer_hand)
-                print(f"Dealer's hand: {dealer_hand}")
+                print(f"Dealer's hand: {dealer_hand} for a total of {total(dealer_hand)}")
         elif command == "quit" or "quit game" or "quit the game":
             print("Goodbye")
             break
