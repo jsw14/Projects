@@ -4,6 +4,7 @@
 #print dealer cards on stay
 
 import random
+import os
 
 print("""
 Hello there! You are about to play Blackjack. The rules are simple: you are playing against the dealer. 
@@ -52,30 +53,55 @@ def hit(hand):
     return hand
 
 
+def play_again():
+    play_again = input("Would you like to play again? \n> ").lower()
+    if play_again == "no" or play_again == "n":
+        print("See you again!")
+        exit()
+    deck = [2, 3, 4, 5, 6 ,7, 8, 9, 10, "J", "Q", "K", "A" ] * 4
+    player_hand = []
+    dealer_hand = []
+    play_game()
+
+def clear():
+	if os.name == 'nt':
+		os.system('CLS')
+	else:
+		os.system('clear')
+
+
 def blackjack(player_hand, dealer_hand):
     if total(player_hand) == 21 and total(dealer_hand) == 21:
         print("It's a tie. You both have blackjack!")
+        play_again()
     elif total(player_hand) == 21:
         print("You win! You have blackjack!")
+        play_again()
     elif total(dealer_hand) == 21:
         print("You lose. The dealer has blackjack.")
+        play_again()
 
 
 def bust(player_hand, dealer_hand):
     if total(player_hand) > 21:
         print("Bust! You lose.")
+        play_again()
     elif total(dealer_hand) > 21:
         print("The dealer busted. You win!")
+        play_again()
 
 
 def scoring(player_hand, dealer_hand):
     if total(player_hand) > total(dealer_hand):
         print("Your total is higher than the dealer's. You win!")
+        play_again()
     elif total(player_hand) < total(dealer_hand):
         print("The dealer's total is higher than yours. You lose.")
+        play_again()
 
 
 def play_game():
+    clear()
     player_hand = deal()
     dealer_hand = deal()
     print(f"Dealer's hand: {dealer_hand[0]}")
@@ -99,9 +125,9 @@ def play_game():
             blackjack(player_hand, dealer_hand)
             if total(player_hand) < 21 and total(dealer_hand) < 21:
                 scoring(player_hand, dealer_hand)
-        elif command == "quit" or "quit game" or "quit the game":
+        elif command == "quit" or command == "quit game" or command == "quit the game":
             print("Goodbye")
-            break
+            exit()
         else:
             print("Error: please choose either hit, stay, or quit.")
 
