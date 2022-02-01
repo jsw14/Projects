@@ -1,7 +1,4 @@
-#Blackjack terminal game
-#prints one dealer card and prints two player cards
-#input stay or hit
-#print dealer cards on stay
+#Blackjack
 
 import random
 import os
@@ -17,11 +14,7 @@ If the dealer busts, you win. Otherwise, who ever has the largest total wins.
 """
 )
 
-#first need a deck of cards to draw from
 deck = [2, 3, 4, 5, 6 ,7, 8, 9, 10, "J", "Q", "K", "A" ] * 4
-
-#give starting cards to player and dealer
-#need a list to hold the cards
 
 def deal():
     hand = []
@@ -132,4 +125,5 @@ def play_game():
             print("Error: please choose either hit, stay, or quit.")
 
 
-play_game()
+if __name__ == "__main__":
+    play_game()
