@@ -61,6 +61,7 @@ def play_again():
     deck = [2, 3, 4, 5, 6 ,7, 8, 9, 10, "J", "Q", "K", "A" ] * 4
     player_hand = []
     dealer_hand = []
+    clear()
     play_game()
 
 def clear():
@@ -101,7 +102,6 @@ def scoring(player_hand, dealer_hand):
 
 
 def play_game():
-    clear()
     player_hand = deal()
     dealer_hand = deal()
     print(f"Dealer's hand: {dealer_hand[0]}")
