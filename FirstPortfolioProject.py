@@ -52,23 +52,53 @@ def hit(hand):
     return hand
 
 
+def blackjack(player_hand, dealer_hand):
+    if total(player_hand) == 21 and total(dealer_hand) == 21:
+        print("It's a tie. You both have blackjack!")
+    elif total(player_hand) == 21:
+        print("You win! You have blackjack!")
+    elif total(dealer_hand) == 21:
+        print("You lose. The dealer has blackjack.")
+
+
+def bust(player_hand, dealer_hand):
+    if total(player_hand) > 21:
+        print("Bust! You lose.")
+    elif total(dealer_hand) > 21:
+        print("The dealer busted. You win!")
+
+
+def scoring(player_hand, dealer_hand):
+    if total(player_hand) > total(dealer_hand):
+        print("Your total is higher than the dealer's. You win!")
+    elif total(player_hand) < total(dealer_hand):
+        print("The dealer's total is higher than yours. You lose.")
+
+
 def play_game():
     player_hand = deal()
     dealer_hand = deal()
     print(f"Dealer's hand: {dealer_hand[0]}")
     print(f"Your hand: {player_hand} for a total of {total(player_hand)}")
+    blackjack(player_hand, dealer_hand)
     command = ""
     while command != "quit":
         command = input("Would you like to hit, stay, or quit the game? \n> ").lower()
-        if command == "hit":
+        if command == "hit" and total(player_hand) < 21:
             hit(player_hand)
             print(f"Your hand: {player_hand} for a total of {total(player_hand)}")
+            bust(player_hand, dealer_hand)
+        elif command == "hit" and total(player_hand) == 21:
+            print("You already have 21. Either stay or quit.")
         elif command == "stay":
-            #add totals to dealer hand
             print(f"Dealer's hand: {dealer_hand} for a total of {total(dealer_hand)}")
             while total(dealer_hand) < 17:
                 hit(dealer_hand)
                 print(f"Dealer's hand: {dealer_hand} for a total of {total(dealer_hand)}")
+            bust(player_hand, dealer_hand)
+            blackjack(player_hand, dealer_hand)
+            if total(player_hand) < 21 and total(dealer_hand) < 21:
+                scoring(player_hand, dealer_hand)
         elif command == "quit" or "quit game" or "quit the game":
             print("Goodbye")
             break
